@@ -1,10 +1,13 @@
-var map = L.map('map').setView([35, -95], 4);
+// Create a map object and specify the center lat/lon and zoom level
+var map = L.map('map').setView([35, -92], 4);
 
+// Include a basemap layer for this webservice
 var streets = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 
 		}).addTo(map);
 
+// Include a WMS link, layer identifier, and attribute information
 var precipitation = L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
 		    layers: 'nexrad-n0r-900913',
 		    format: 'image/png',
@@ -12,15 +15,15 @@ var precipitation = L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wm
 		    attribution: "Weather data © 2012 IEM Nexrad"
 		}).addTo(map);
 
-
+// Include a WMS link, layer identifier, and attribute information
 var tornadowarnings = L.tileLayer.wms("http://nowcoast.noaa.gov/arcgis/services/nowcoast/wwa_meteoceanhydro_shortduration_hazards_watches_time/MapServer/WMSServer", {
 				layers: '2',
 				format: 'image/png',
 				transparent: true,
-				attribution: "NOAA Watches"
+				attribution: "NOAA Warnings, Watches and Advisories"
 		}).addTo(map);
 
-
+// Include a WMS link, layer identifier, and attribute information
 var relativehumidity = L.tileLayer.wms("http://nowcoast.noaa.gov/arcgis/services/nowcoast/forecast_meteoceanhydro_sfc_ndfd_relhumidity_offsets/MapServer/WMSServer", {
 				layers: '1',
 				format: 'image/png',
